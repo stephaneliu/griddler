@@ -18,6 +18,7 @@ module Griddler
       @raw_html = params[:html]
       @raw_body = @raw_text.presence || @raw_html
 
+      Rails.logger.info "parameters permitted: #{params.permitted?}"
       @headers = extract_headers
 
       @cc = recipients(:cc)
@@ -79,7 +80,7 @@ module Griddler
         deep_clean_invalid_utf8_bytes(params[:headers])
       else
         Rails.logger.error "headers is_a: #{params[:headers].class}"
-        Rails.logger.info "headers value: #{params[:headers]}"
+        Rails.logger.info "headers value: #{params[:headers].inspect}"
         EmailParser.extract_headers(clean_invalid_utf8_bytes(params[:headers]))
       end
     end
