@@ -18,7 +18,6 @@ module Griddler
       @raw_html = params[:html]
       @raw_body = @raw_text.presence || @raw_html
 
-      Rails.logger.info "parameters permitted: #{params.permitted?}"
       @headers = extract_headers
 
       @cc = recipients(:cc)

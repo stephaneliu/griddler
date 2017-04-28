@@ -1,7 +1,8 @@
 class Griddler::EmailsController < ActionController::Base
   def create
     normalized_params.each do |p|
-      process_email email_class.new(p)
+      Rails.logger.info "params permitted? #{p.permitted?}"
+      process_email email_class.new(p.to_h)
     end
 
     head :ok
