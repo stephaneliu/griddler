@@ -78,7 +78,8 @@ module Griddler
       elsif params[:headers].is_a?(Array)
         deep_clean_invalid_utf8_bytes(params[:headers])
       else
-        Rails.loggger.error "headers is_a: #{headers.class}"
+        Rails.logger.error "headers is_a: #{params[:headers].class}"
+        Rails.logger.info "headers value: #{params[:headers]}"
         EmailParser.extract_headers(clean_invalid_utf8_bytes(params[:headers]))
       end
     end
